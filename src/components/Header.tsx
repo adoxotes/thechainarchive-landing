@@ -11,7 +11,8 @@ const Header: React.FC = () => {
       <h1>The Chain Archive</h1>
       <p className="tagline">
         Store infrequent data on popular blockchains in a private, decentralized
-        and immutable manner.
+        and immutable manner. No tokenomics, no subscriptions. Just transparency
+        and encryption.
       </p>
     </header>
   );

@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import {
+  FilePyIcon,
+  TerminalWindowIcon,
+  CurrencyEthIcon,
+} from "@phosphor-icons/react";
 
 type Language = "python" | "cli" | "sol";
 
@@ -10,12 +15,12 @@ interface Snippet {
 
 const snippets: Record<Language, Snippet> = {
   python: {
-    title: "On-Chain Storage Request",
+    title: "On-Chain Storage",
     label: "PYTHON",
     code: `...`,
   },
   cli: {
-    title: "Command Line Imperial Interface",
+    title: "Command Line Interface",
     label: "SHELL",
     code: `# Install
   # Output: Success. Artifact stored at ...`,
@@ -53,19 +58,19 @@ const CodeExplorer: React.FC = () => {
           className={`nav-item ${activeLang === "python" ? "active" : ""}`}
           onClick={() => handleLangChange("python")}
         >
-          <i className="fab fa-python"></i> Python API
+          <FilePyIcon size={20} /> Python API
         </div>
         <div
           className={`nav-item ${activeLang === "cli" ? "active" : ""}`}
           onClick={() => handleLangChange("cli")}
         >
-          <i className="fas fa-terminal"></i> Command Line
+          <TerminalWindowIcon size={20} /> Command Line
         </div>
         <div
           className={`nav-item ${activeLang === "sol" ? "active" : ""}`}
           onClick={() => handleLangChange("sol")}
         >
-          <i className="fas fa-file-contract"></i> Solidity Interface
+          <CurrencyEthIcon size={20} /> Solidity Interface
         </div>
       </aside>
 
