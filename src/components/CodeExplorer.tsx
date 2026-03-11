@@ -17,13 +17,20 @@ const snippets: Record<Language, Snippet> = {
   python: {
     title: "On-Chain Storage",
     label: "PYTHON",
-    code: `...`,
+    code: `# Store data on Polygon
+from chainarchive import Archive
+
+client = Archive("POLYGON_RPC")
+client.store("Sensitive data summary", encryption="RSA")`,
   },
   cli: {
     title: "Command Line Interface",
     label: "SHELL",
     code: `# Install
-  # Output: Success. Artifact stored at ...`,
+pip install chainarchive
+
+# Store file
+chainarchive store ./data.json --network polygon --encrypt`,
   },
   sol: {
     title: "Cross-Chain Storage Bridge",
@@ -31,56 +38,51 @@ const snippets: Record<Language, Snippet> = {
     code: `// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
-...
-`,
+import "@chainarchive/contracts/Archive.sol";
+
+contract DataBridge {
+    function archive(bytes32 dataHash) external {
+        Archive.store(dataHash);
+    }
+}`,
   },
 };
 
 const CodeExplorer: React.FC = () => {
   const [activeLang, setActiveLang] = useState<Language>("python");
-  const [isFading, setIsFading] = useState(false);
-
-  const handleLangChange = (lang: Language) => {
-    setIsFading(true);
-    setTimeout(() => {
-      setActiveLang(lang);
-      setIsFading(false);
-    }, 200);
-  };
 
   const currentSnippet = snippets[activeLang];
 
   return (
     <section id="explorer" className="explorer-section">
+      <div className="decor-corner tl"></div>
+      <div className="decor-corner tr"></div>
+      <div className="decor-corner bl"></div>
+      <div className="decor-corner br"></div>
+      
       <aside className="explorer-sidebar">
         <h4>API Documentation</h4>
         <div
           className={`nav-item ${activeLang === "python" ? "active" : ""}`}
-          onClick={() => handleLangChange("python")}
+          onClick={() => setActiveLang("python")}
         >
           <FilePyIcon size={20} /> Python API
         </div>
         <div
           className={`nav-item ${activeLang === "cli" ? "active" : ""}`}
-          onClick={() => handleLangChange("cli")}
+          onClick={() => setActiveLang("cli")}
         >
           <TerminalWindowIcon size={20} /> Command Line
         </div>
         <div
           className={`nav-item ${activeLang === "sol" ? "active" : ""}`}
-          onClick={() => handleLangChange("sol")}
+          onClick={() => setActiveLang("sol")}
         >
           <CurrencyEthIcon size={20} /> Solidity Interface
         </div>
       </aside>
 
-      <main
-        className="code-display"
-        style={{
-          opacity: isFading ? 0 : 1,
-          transition: "opacity 0.2s ease",
-        }}
-      >
+      <main className="code-display">
         <div className="code-header">
           <span style={{ fontWeight: "bold", fontFamily: "Cinzel" }}>
             {currentSnippet.title}

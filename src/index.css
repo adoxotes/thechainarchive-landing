@@ -40,7 +40,8 @@ body {
 
 /* Main Container */
 .container {
-  max-width: 1200px;
+  max-width: 1800px;
+  width: 95%;
   margin: 0 auto;
   padding: 2rem;
   position: relative;
@@ -62,6 +63,7 @@ header {
   width: 40px;
   height: 40px;
   border: 4px solid var(--gold);
+  z-index: 10;
 }
 .tl {
   top: -2px;
@@ -108,15 +110,15 @@ h1 {
 /* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   margin-bottom: 4rem;
 }
 
 .stat-card {
   background: rgba(25, 15, 28, 0.7);
   border: 1px solid var(--gold);
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
   transition: var(--transition);
 }
@@ -151,10 +153,11 @@ h1 {
   grid-template-columns: 300px 1fr;
   background: var(--parchment);
   color: var(--text-dark);
-  border: 8px solid var(--gold);
+  border: 2px solid var(--gold);
   min-height: 500px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   border-radius: 4px;
+  position: relative;
 }
 
 .explorer-sidebar {
@@ -176,7 +179,6 @@ h1 {
   padding: 0.8rem 1rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
-  transition: 0.2s;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -243,7 +245,6 @@ pre {
   text-decoration: none;
   padding: 1rem 2.5rem;
   border: 2px solid var(--gold);
-  transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
@@ -291,4 +292,38 @@ pre {
 ::-webkit-scrollbar-thumb {
   background: var(--gold);
   border-radius: 5px;
+}
+
+/* Two Column Layout */
+.main-layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.codex-heading {
+  font-family: "Cinzel", serif;
+  text-align: center;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+.left-column header {
+  margin-bottom: 2rem;
+}
+
+.left-column .stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }

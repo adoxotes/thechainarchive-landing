@@ -9,19 +9,16 @@ function App() {
     <>
       <div className="bg-overlay"></div>
       <div className="container">
-        <Header />
-        <Stats />
-        <h2
-          style={{
-            fontFamily: "Cinzel",
-            textAlign: "center",
-            color: "var(--gold)",
-            marginBottom: "2rem",
-          }}
-        >
-          THE DEVELOPER CODEX
-        </h2>
-        <CodeExplorer />
+        <div className="main-layout">
+          <div className="left-column">
+            <Header />
+            <Stats />
+          </div>
+          <div className="right-column">
+            <h2 className="codex-heading">THE DEVELOPER CODEX</h2>
+            <CodeExplorer />
+          </div>
+        </div>
         <Footer />
       </div>
     </>
